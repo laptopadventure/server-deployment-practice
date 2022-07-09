@@ -1,3 +1,5 @@
+// Line 1 to 44 - credit to David Souther's https://github.com/DavidSouther/js401n21lab1
+
 // Assertion - check to see if something is what we expect
 
 // expect(true).toBe(true); // SGTM
