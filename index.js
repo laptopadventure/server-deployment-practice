@@ -1,5 +1,3 @@
-// Line 1 to 10 - credit to David Souther's https://github.com/DavidSouther/js401n21lab1
-
 "use strict";
 
 require("dotenv").config();

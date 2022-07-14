@@ -1,4 +1,3 @@
-// Line 1 to 44 - credit to David Souther's https://github.com/DavidSouther/js401n21lab1
 
 // Assertion - check to see if something is what we expect
 
@@ -38,6 +37,14 @@ describe("Node Server", () => {
         expect(response.body).toEqual({
             name: "David",
             role: "Instructor",
+        });
+    });
+    it("returns 200 if the name is in the person query string, and the object is correct", async () => {
+        const response = await request.get("/person?name=polly");
+        expect(response.status).toBe(200);
+        
+        expect(response.body).toEqual({
+            name: "polly provided"
         });
     });
 });
