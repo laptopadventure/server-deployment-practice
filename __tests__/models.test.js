@@ -9,10 +9,10 @@ const request = supertest(server.app);
 //some generic addition to the db to compare to
 
 describe('Models', () => {
-  beforeEach(() => {
-    db.sync();
-  });
   describe('Painting Model', () => {
+    beforeEach(async () => {
+      await db.sync();
+    });
     let monaLisaId;
     it('can create paintings', async () => {
       const monaLisa = {
@@ -56,6 +56,9 @@ describe('Models', () => {
     });
   });
   describe('Antique Models', () => {
+    beforeEach(async () => {
+      await db.sync();
+    });
     let codexId;
     it('can create antiques', async () => {
       const codex = {

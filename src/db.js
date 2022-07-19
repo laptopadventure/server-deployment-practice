@@ -11,13 +11,13 @@ switch (process.env.NODE_ENV) {
     console.log('using production');
     connection_string = process.env.POSTGRES_URI;
     break;
+  case 'test':
+    //notably does not break here
+    shouldLog = false;
   case 'dev':
     console.log('using dev');
     connection_string = 'sqlite::memory:';
     break;
-  case 'test':
-    //notably does not break here
-    shouldLog = false;
   case 'staging':
   default:
     console.log('using staging');
