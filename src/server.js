@@ -9,22 +9,9 @@ const { logger } = require('./middleware/logger');
 const { validator } = require('./middleware/validator');
 const { error404 } = require('./error-handlers/404');
 const { error500 } = require('./error-handlers/500');
-const {
-  getPainting,
-  createPainting,
-  listPainting,
-  updatePainting,
-  deletePainting,
-} = require('./handler/painting');
-const {
-  createAntique,
-  listAntique,
-  getAntique,
-  updateAntique,
-  deleteAntique,
-} = require('./handler/antique');
 
-const { db } = require('./db');
+const { db, Museum, Painting, Antique } = require('./db');
+const { Collection } = require('./models/collection');
 
 const app = express();
 
@@ -42,21 +29,11 @@ app.get('/', hello);
 app.get('/data', data);
 app.get('/person', validator, person);
 
-//painting routes
+//models
 
-app.post('/painting', createPainting);
-app.get('/painting', listPainting);
-app.get('/painting/:id', getPainting);
-app.put('/painting/:id', updatePainting);
-app.delete('/painting/:id', deletePainting);
-
-//antique routes
-
-app.post('/antique', createAntique);
-app.get('/antique', listAntique);
-app.get('/antique/:id', getAntique);
-app.put('/antique/:id', updateAntique);
-app.delete('/antique/:id', deleteAntique);
+new Collection(Museum, app, 'museum');
+new Collection(Painting, app, 'painting');
+new Collection(Antique, app, 'antique');
 
 app.use(error404);
 app.use(error500);
